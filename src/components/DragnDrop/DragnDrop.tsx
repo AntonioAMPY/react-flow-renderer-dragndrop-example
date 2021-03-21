@@ -68,7 +68,7 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
         id: getId(),
         type,
         position,
-        data: { label: `` }, //${type} node
+        data: { label: `` }, // ${type} node
       };
 
       setElements((es) => es.concat(newNode));
