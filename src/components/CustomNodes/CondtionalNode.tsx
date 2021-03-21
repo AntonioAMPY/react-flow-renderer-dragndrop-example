@@ -13,7 +13,7 @@ const ConditionalNode: FC<NodeProps> = () => {
           style={{ background: "#555", top: "auto", bottom: "auto" }}
         />
         <Handle
-          type="source"
+          type="target" // fix type
           position={Position.Left}
           style={{ background: "#555", top: 80, bottom: "auto" }}
         />
