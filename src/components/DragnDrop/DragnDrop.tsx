@@ -15,7 +15,7 @@ import ReactFlow, {
 
 import Sidebar from "./Siderbar";
 
-import ConditionalNode from "../CustomNodes/customNode";
+import ConditionalNode from "../CustomNodes/CondtionalNode";
 
 import "./dnd.css";
 

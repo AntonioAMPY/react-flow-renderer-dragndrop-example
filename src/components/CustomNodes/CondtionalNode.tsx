@@ -1,9 +1,9 @@
 import React, { memo, FC } from "react";
-import "./customNode.css";
+import "./conditionalNode.css";
 
 import { Handle, Position, NodeProps } from "react-flow-renderer";
 
-const ColorSelectorNode: FC<NodeProps> = () => {
+const ConditionalNode: FC<NodeProps> = () => {
   return (
     <>
       <div className="rhombus">
@@ -12,17 +12,14 @@ const ColorSelectorNode: FC<NodeProps> = () => {
           position={Position.Right}
           style={{ background: "#555", top: "auto", bottom: "auto" }}
         />
-        <div>
-          <div className="textInRhombus">Triangle</div>
-        </div>
         <Handle
           type="source"
           position={Position.Left}
-          style={{ background: "#555", top: 100, bottom: "auto" }}
+          style={{ background: "#555", top: 80, bottom: "auto" }}
         />
       </div>
     </>
   );
 };
 
-export default memo(ColorSelectorNode);
+export default memo(ConditionalNode);

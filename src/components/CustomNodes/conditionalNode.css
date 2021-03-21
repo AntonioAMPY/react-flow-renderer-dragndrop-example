@@ -1,7 +1,8 @@
 .rhombus {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: solid black 1px;
+  border-color: #ff0072;
   display: block;
   transform: rotate(45deg);
 }
