@@ -25,7 +25,7 @@ const Sidebar = () => {
       </div>
       <div
         className="dndnode output"
-        onDragStart={(event: DragEvent) => onDragStart(event, "output")}
+        onDragStart={(event: DragEvent) => onDragStart(event, "selectorNode")}
         draggable
       >
         Decision

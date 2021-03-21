@@ -15,6 +15,8 @@ import ReactFlow, {
 
 import Sidebar from "./Siderbar";
 
+import ConditionalNode from "../CustomNodes/customNode";
+
 import "./dnd.css";
 
 const initialElements = [
@@ -25,6 +27,10 @@ const initialElements = [
     position: { x: 250, y: 5 },
   },
 ];
+
+const nodeTypes = {
+  selectorNode: ConditionalNode,
+};
 
 const onDragOver = (event: DragEvent) => {
   event.preventDefault();
@@ -79,8 +85,8 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
             style={{ width: "100%", height: "90vh" }}
             onElementsRemove={onElementsRemove}
             onLoad={onLoad}
-            onClick={(e: any) => console.log("onclick", e)}
             onDrop={onDrop}
+            nodeTypes={nodeTypes}
             onDragOver={onDragOver}
           >
             <MiniMap
@@ -89,6 +95,7 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
                 if (n.type === "input") return "#0041d0";
                 if (n.type === "output") return "#ff0072";
                 if (n.type === "default") return "#1a192b";
+                if (n.type === "selectorNode") return "#FF0000";
 
                 return "#eee";
               }}

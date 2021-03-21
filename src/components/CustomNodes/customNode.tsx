@@ -1,9 +1,28 @@
-import React from "react";
+import React, { memo, FC } from "react";
+import "./customNode.css";
 
-export interface customNodeRomboProps {}
+import { Handle, Position, NodeProps } from "react-flow-renderer";
 
-const customNodeRombo: React.SFC<customNodeRomboProps> = () => {
-  return <p>Prueba</p>;
+const ColorSelectorNode: FC<NodeProps> = () => {
+  return (
+    <>
+      <div className="rhombus">
+        <Handle
+          type="target"
+          position={Position.Right}
+          style={{ background: "#555", top: "auto", bottom: "auto" }}
+        />
+        <div>
+          <div className="textInRhombus">Triangle</div>
+        </div>
+        <Handle
+          type="source"
+          position={Position.Left}
+          style={{ background: "#555", top: 100, bottom: "auto" }}
+        />
+      </div>
+    </>
+  );
 };
 
-export default customNodeRombo;
+export default memo(ColorSelectorNode);
