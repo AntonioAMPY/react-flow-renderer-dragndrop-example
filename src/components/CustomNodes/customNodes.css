@@ -15,3 +15,24 @@
   vertical-align: middle;
   width: 60px;
 }
+
+.rectangle {
+  height: 35px;
+  width: 100px;
+  border: solid black 1px;
+  border-color: #000;
+  display: block;
+}
+
+.background {
+  background: "#555";
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border: solid black 1px;
+  border-color: blue;
+  display: block;
+  border-radius: 50%;
+}

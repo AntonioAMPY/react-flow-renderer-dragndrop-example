@@ -8,14 +8,16 @@ import ReactFlow, {
   Elements,
   Connection,
   Edge,
-  ElementId,
   MiniMap,
   Node,
 } from "react-flow-renderer";
 
 import Sidebar from "./Siderbar";
+import { v4 as uuidv4 } from "uuid";
 
-import ConditionalNode from "../CustomNodes/CondtionalNode";
+import ConditionalNode from "../CustomNodes/ConditionalNode";
+import ProcessNode from "../CustomNodes/ProcessNode";
+import StartNode from "../CustomNodes/StartNode";
 
 import "./dnd.css";
 
@@ -29,16 +31,15 @@ const initialElements = [
 ];
 
 const nodeTypes = {
-  selectorNode: ConditionalNode,
+  conditionalNode: ConditionalNode,
+  processNode: ProcessNode,
+  startNode: StartNode,
 };
 
 const onDragOver = (event: DragEvent) => {
   event.preventDefault();
   event.dataTransfer.dropEffect = "move";
 };
-
-let id = 0;
-const getId = (): ElementId => `dndnode_${id++}`;
 
 export interface DnDFlowProps {}
 
@@ -47,7 +48,7 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
   const [elements, setElements] = useState<Elements>(initialElements);
 
   const onConnect = (params: Connection | Edge) =>
-    setElements((els) => addEdge(params, els));
+    setElements((els) => addEdge({ ...params, animated: true }, els));
 
   const onElementsRemove = (elementsToRemove: Elements) =>
     setElements((els) => removeElements(elementsToRemove, els));
@@ -65,7 +66,7 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
         y: event.clientY - 40,
       });
       const newNode: Node = {
-        id: getId(),
+        id: uuidv4(),
         type,
         position,
         data: { label: `` }, // ${type} node
@@ -86,6 +87,7 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
             onElementsRemove={onElementsRemove}
             onLoad={onLoad}
             onDrop={onDrop}
+            deleteKeyCode={46}
             nodeTypes={nodeTypes}
             onDragOver={onDragOver}
           >
@@ -95,13 +97,12 @@ const DnDFlow: React.SFC<DnDFlowProps> = () => {
                 if (n.type === "input") return "#0041d0";
                 if (n.type === "output") return "#ff0072";
                 if (n.type === "default") return "#1a192b";
-                if (n.type === "selectorNode") return "#FF0000";
-
+                if (n.type === "conditionalNode") return "#FF0000";
+                if (n.type === "processNode") return "#000";
                 return "#eee";
               }}
               nodeColor={(n: any) => {
                 if (n.style?.background) return n.style.background;
-
                 return "#fff";
               }}
               nodeBorderRadius={2}
